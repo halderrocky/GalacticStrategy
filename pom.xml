@@ -4,8 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.sdccd.cisc190</groupId>
-    <artifactId>CISC190Lab8.3</artifactId>
+
+    <!-- updated the groupID to match the package structure 190 -> 191 -->
+    <groupId>edu.sdccd.cisc191</groupId>
+    <artifactId>3</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -17,6 +19,8 @@
         <log4j.version>2.24.1</log4j.version>
     </properties>
     <dependencies>
+
+        <!-- logging dependencies -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -32,27 +36,41 @@
             <artifactId>log4j-slf4j2-impl</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+
+        <!-- JavaFX controls (for UI components like Label, Button, Scene, etc.) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- JavaFX FXML (for layout) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+
+        <!-- JavaFX Web (embedding web content) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
             <version>${javafx.version}</version>
         </dependency>
 
+        <!-- Google API dependencies -->
         <dependency>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client</artifactId>
             <version>1.25.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client-jetty</artifactId>
             <version>1.25.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-sheets</artifactId>
@@ -60,7 +78,7 @@
         </dependency>
 
 
-
+        <!-- Testing Dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -83,6 +101,7 @@
 
     <build>
         <plugins>
+            <!-- Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -92,6 +111,7 @@
                     <target>21</target>
                 </configuration>
             </plugin>
+            <!-- JavaFX Maven plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -101,13 +121,14 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>edu.sdccd.cisc190.Main</mainClass>
+                            <mainClass>edu.sdccd.cisc191.game.Game</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
+                            <addModules>javafx.controls,javafx.fxml</addModules>    <!-- Required for UI controls -->
                         </configuration>
                     </execution>
                 </executions>

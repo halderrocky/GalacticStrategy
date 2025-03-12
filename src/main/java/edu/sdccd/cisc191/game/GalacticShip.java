@@ -26,6 +26,11 @@ public class GalacticShip {
         this.name = enterprise;
     }
 
+    public GalacticShip(String shipName, int shipHealth) {
+        this.name = shipName;
+        this.health = shipHealth;
+    }
+
     public String getName() {
         return name;
     }

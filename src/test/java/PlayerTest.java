@@ -35,4 +35,24 @@ public class PlayerTest {
         Player player = new Player("Test Player");
         assertEquals("Test Player", player.getName(), "Player's name should be 'Test Player'");
     }
+
+    @Test
+    public void testLoadFromFile() throws Exception {
+        Player player = new Player("Test Player");
+        String filename = "test_player_data.txt";
+
+        // Save initial data to file
+        player.addShip(new GalacticShip("Ship One", 100, 20));
+        player.addShip(new GalacticShip("Ship Two", 80, 15));
+        player.saveToFile(filename);
+
+        // Load data into a new player object
+        Player loadedPlayer = new Player("New Player");
+        loadedPlayer.loadFromFile(filename);
+
+        // Verify loaded data
+        assertEquals("Test Player", loadedPlayer.getName(), "Loaded player name should be 'Test Player'");
+        assertEquals(2, loadedPlayer.getFleet().size(), "Loaded player should have 2 ships in the fleet");
+        assertEquals(180, loadedPlayer.getTotalFleetHealth(), "Loaded fleet health should be 180");
+    }
 }
